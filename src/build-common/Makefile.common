@@ -1,0 +1,73 @@
+PROJECT := $(shell basename $(CURDIR))
+BUILD_DIR := ../../build/$(PROJECT)
+IS_TARGETING_WINDOWS := $(shell $(CC) -dumpmachine | grep mingw)
+
+SRCS := $(shell find -name '*.c')
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+
+COMBINED_HEADER := $(PROJECT).h
+HEADERS := $(shell find -name '*.h' ! -name '_*' ! -path './internal/*')
+BUILD_HEADERS := $(patsubst %, $(BUILD_DIR)/%, $(HEADERS))
+
+ifeq ($(IS_RELEASE), yes)
+	CFLAGS += -O2
+	LDFLAGS += -s
+else
+	CFLAGS += -g -Wall
+endif
+
+ifeq ($(EXECUTABLE_TYPE), library)
+	ifeq ($(IS_TARGETING_WINDOWS),)
+		EXECUTABLE := $(PROJECT).so
+	else
+		EXECUTABLE := $(PROJECT).dll
+	endif
+	LDFLAGS := $(LDFLAGS) -shared
+	CFLAGS := $(CFLAGS) -fPIC
+else
+	EXECUTABLE := $(PROJECT)
+endif
+
+ifndef PREFIX
+	PREFIX := /usr/local
+endif
+ifndef LIB_DIR
+	LIB_DIR := lib64
+endif
+
+.DELETE_ON_ERROR:
+$(BUILD_DIR)/$(EXECUTABLE): $(OBJS) $(BUILD_HEADERS)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+
+$(BUILD_DIR)/%.c.o: %.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.h: %.h
+ifeq ($(EXECUTABLE_TYPE), library)
+	echo $< | sed 's/^.*/#include "&"/' >> $(BUILD_DIR)/$(COMBINED_HEADER)
+	cp $< $@
+endif
+
+clean:
+	rm -r $(BUILD_DIR)/*
+
+install: $(BUILD_DIR)/$(EXECUTABLE)
+ifeq ($(EXECUTABLE_TYPE), library)
+	cp $(BUILD_DIR)/$(EXECUTABLE) $(PREFIX)/$(LIB_DIR)
+	mkdir -p $(PREFIX)/include/$(PROJECT)
+	cp $(BUILD_DIR)/*.h $(PREFIX)/include/$(PROJECT)
+else
+	cp $(BUILD_DIR)/$(EXECUTABLE) $(PREFIX)/bin
+endif
+
+uninstall:
+ifeq ($(EXECUTABLE_TYPE), library)
+	rm $(PREFIX)/$(LIB_DIR)/$(EXECUTABLE)
+	rm -r $(PREFIX)/include/$(PROJECT)
+else
+	rm $(PREFIX)/bin/$(EXECUTABLE)
+endif
+
+
+.PHONY: clean install uninstall
