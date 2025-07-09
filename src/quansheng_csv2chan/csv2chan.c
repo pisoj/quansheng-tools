@@ -12,29 +12,29 @@ int main(int argc, char *argv[]) {
 
     FILE *csv = fopen(argv[1], "wb");
 
-    ChanChannel channel = {
+    qdc_Channel channel = {
         .rxFrequency = 145750000,
         .txOffset = 600,
-        .txCode = ChanCode_CTCSS_254_1,
-        .rxCode = ChanCode_NONE,
-        .modulation = ChanModulation_FM,
-        .offsetDirection = ChanOffsetDirection_MINUS,
+        .txCode = qdc_Code_CTCSS_254_1,
+        .rxCode = qdc_Code_NONE,
+        .modulation = qdc_Modulation_FM,
+        .offsetDirection = qdc_OffsetDirection_MINUS,
         .preventTxWhileReceiving = true,
-        .outputPower = ChanOutputPower_MEDIUM,
-        .bandwidth = ChanBandwidth_WIDE,
+        .outputPower = qdc_OutputPower_MEDIUM,
+        .bandwidth = qdc_Bandwidth_WIDE,
         .swapRxAndTxFrequencies = false,
-        .pttIdMode = ChanPttId_BEGIN_END,
+        .pttIdMode = qdc_PttId_BEGIN_END,
         .enableDtmf = true,
-        .frequencyStep = ChanFrequencyStep_25,
-        .scrambleMode = ChanScramble_NONE,
+        .frequencyStep = qdc_FrequencyStep_25,
+        .scrambleMode = qdc_Scramble_NONE,
         .name = " ššs",
         .includeInScanList1 = false,
         .includeInScanList2 = true,
         .enableRxCompander = false,
         .enableTxCompander = true,
     };
-    Chan chan = {0};
-    chanSetChannel(&chan, 1, &channel);
+    qdc_Chan chan = {0};
+    qdc_chanSetChannel(&chan, 1, &channel);
 
     fwrite(&chan, sizeof(chan), 1, csv);
 

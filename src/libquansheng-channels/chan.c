@@ -1,35 +1,34 @@
 #include "chan.h"
 #include <string.h>
-#include <stdint.h>
 #include "internal/utils.h"
 
-ChanSetChannelErr chanSetChannel(Chan *chan, unsigned int channelNumber, const ChanChannel *ch) {
+qdc_ChanSetChannelErr qdc_chanSetChannel(qdc_Chan *chan, unsigned int channelNumber, const qdc_Channel *ch) {
     if (channelNumber > 199) {
-        return ChanSetChannelErr_MAX_CHANNEL_NUMBER_IS_199;
+        return qdc_ChanSetChannelErr_MAX_CHANNEL_NUMBER_IS_199;
     }
     if (ch->rxFrequency > 1300000000) {
-        return ChanSetChannelErr_MAX_RX_FREQUENCY_IS_1300000000;
+        return qdc_ChanSetChannelErr_MAX_RX_FREQUENCY_IS_1300000000;
     }
     if (ch->txOffset > ch->rxFrequency) {
-        return ChanSetChannelErr_TX_OFFSET_BIGGER_THAN_RX_FREQUENCY;
+        return qdc_ChanSetChannelErr_TX_OFFSET_BIGGER_THAN_RX_FREQUENCY;
     }
 
     char name[sizeof(ch->name)];
     strncpy(name, ch->name, sizeof(name));
-    int replacedCharactersCount = strReplaceNonPrintableASCII(name, sizeof(name), ' ');
-    if(strIsEmpty(name, sizeof(name))) {
-        return ChanSetChannelErr_INVALID_CHANNEL_NAME;
+    int replacedCharactersCount = qdc_strReplaceNonPrintableASCII(name, sizeof(name), ' ');
+    if(qdc_strIsEmpty(name, sizeof(name))) {
+        return qdc_ChanSetChannelErr_INVALID_CHANNEL_NAME;
     }
 
-    ChanSetChannelErr result = ChanSetChannelErr_NONE;
+    qdc_ChanSetChannelErr result = qdc_ChanSetChannelErr_NONE;
     if (replacedCharactersCount > 0) {
-        result = ChanSetChannelErr_NON_ASCII_CHANNEL_NAME_AUTOFIXED;
+        result = qdc_ChanSetChannelErr_NON_ASCII_CHANNEL_NAME_AUTOFIXED;
     }
-    strncpy(chan->_name[channelNumber], name, _Chan_CHANNEL_NAME_MAX_CHARACTERS);
-    strMakeLengthFixed(chan->_name[channelNumber], sizeof(name), ' ');
+    strncpy(chan->_name[channelNumber], name, _qdc_CHANNEL_NAME_MAX_CHARACTERS);
+    qdc_strMakeLengthFixed(chan->_name[channelNumber], sizeof(name), ' ');
 
 
-    chan->_data[channelNumber] = (_ChanChannelData){
+    chan->_data[channelNumber] = (_qdc_ChanChannelData){
         .rxFrequency = ch->rxFrequency / 10,
         .txOffset = ch->txOffset / 10,
         .rxCode = ch->rxCode,
