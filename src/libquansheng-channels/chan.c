@@ -1,6 +1,6 @@
 #include "chan.h"
 #include <string.h>
-#include "internal/utils.h"
+#include "internal/string.h"
 
 qdc_ChanSetChannelErr qdc_chanSetChannel(qdc_Chan *chan, unsigned int channelNumber, const qdc_Channel *ch) {
     if (channelNumber > 199) {

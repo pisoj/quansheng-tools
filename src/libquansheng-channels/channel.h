@@ -1,12 +1,121 @@
 #ifndef _LIBQUANSHANG_CHANNELS_CHANNEL_H
 #define _LIBQUANSHANG_CHANNELS_CHANNEL_H
 
-#define _qdc_CHANNEL_NAME_MAX_CHARACTERS 10 // More cannot fit on radio screen
+#define _qdc_CHANNEL_NAME_MAX_CHARACTERS sizeof(char) * 10 // More cannot fit on radio screen
 
 #define _qdc_Code_TYPE_NONE 0x000
 #define _qdc_Code_TYPE_CTCSS 0x100
 #define _qdc_Code_TYPE_DCS 0x200
 #define _qdc_Code_TYPE_DCS_INVERTED 0x300
+
+#define _qdc_Code_NOTYPE_DCS_23   0x00
+#define _qdc_Code_NOTYPE_DCS_25   0x01
+#define _qdc_Code_NOTYPE_DCS_26   0x02
+#define _qdc_Code_NOTYPE_DCS_31   0x03
+#define _qdc_Code_NOTYPE_DCS_32   0x04
+#define _qdc_Code_NOTYPE_DCS_36   0x05
+#define _qdc_Code_NOTYPE_DCS_43   0x06
+#define _qdc_Code_NOTYPE_DCS_47   0x07
+#define _qdc_Code_NOTYPE_DCS_51   0x08
+#define _qdc_Code_NOTYPE_DCS_53   0x09
+#define _qdc_Code_NOTYPE_DCS_54   0x0A
+#define _qdc_Code_NOTYPE_DCS_65   0x0B
+#define _qdc_Code_NOTYPE_DCS_71   0x0C
+#define _qdc_Code_NOTYPE_DCS_72   0x0D
+#define _qdc_Code_NOTYPE_DCS_73   0x0E
+#define _qdc_Code_NOTYPE_DCS_74   0x0F
+#define _qdc_Code_NOTYPE_DCS_114  0x10
+#define _qdc_Code_NOTYPE_DCS_115  0x11
+#define _qdc_Code_NOTYPE_DCS_116  0x12
+#define _qdc_Code_NOTYPE_DCS_122  0x13
+#define _qdc_Code_NOTYPE_DCS_125  0x14
+#define _qdc_Code_NOTYPE_DCS_131  0x15
+#define _qdc_Code_NOTYPE_DCS_132  0x16
+#define _qdc_Code_NOTYPE_DCS_134  0x17
+#define _qdc_Code_NOTYPE_DCS_143  0x18
+#define _qdc_Code_NOTYPE_DCS_145  0x19
+#define _qdc_Code_NOTYPE_DCS_152  0x1A
+#define _qdc_Code_NOTYPE_DCS_155  0x1B
+#define _qdc_Code_NOTYPE_DCS_156  0x1C
+#define _qdc_Code_NOTYPE_DCS_162  0x1D
+#define _qdc_Code_NOTYPE_DCS_165  0x1E
+#define _qdc_Code_NOTYPE_DCS_172  0x1F
+#define _qdc_Code_NOTYPE_DCS_174  0x20
+#define _qdc_Code_NOTYPE_DCS_205  0x21
+#define _qdc_Code_NOTYPE_DCS_212  0x22
+#define _qdc_Code_NOTYPE_DCS_223  0x23
+#define _qdc_Code_NOTYPE_DCS_225  0x24
+#define _qdc_Code_NOTYPE_DCS_226  0x25
+#define _qdc_Code_NOTYPE_DCS_243  0x26
+#define _qdc_Code_NOTYPE_DCS_244  0x27
+#define _qdc_Code_NOTYPE_DCS_245  0x28
+#define _qdc_Code_NOTYPE_DCS_246  0x29
+#define _qdc_Code_NOTYPE_DCS_251  0x2A
+#define _qdc_Code_NOTYPE_DCS_252  0x2B
+#define _qdc_Code_NOTYPE_DCS_255  0x2C
+#define _qdc_Code_NOTYPE_DCS_261  0x2D
+#define _qdc_Code_NOTYPE_DCS_263  0x2E
+#define _qdc_Code_NOTYPE_DCS_265  0x2F
+#define _qdc_Code_NOTYPE_DCS_266  0x30
+#define _qdc_Code_NOTYPE_DCS_271  0x31
+#define _qdc_Code_NOTYPE_DCS_274  0x32
+#define _qdc_Code_NOTYPE_DCS_306  0x33
+#define _qdc_Code_NOTYPE_DCS_311  0x34
+#define _qdc_Code_NOTYPE_DCS_315  0x35
+#define _qdc_Code_NOTYPE_DCS_325  0x36
+#define _qdc_Code_NOTYPE_DCS_331  0x37
+#define _qdc_Code_NOTYPE_DCS_332  0x38
+#define _qdc_Code_NOTYPE_DCS_343  0x39
+#define _qdc_Code_NOTYPE_DCS_346  0x3A
+#define _qdc_Code_NOTYPE_DCS_351  0x3B
+#define _qdc_Code_NOTYPE_DCS_356  0x3C
+#define _qdc_Code_NOTYPE_DCS_364  0x3D
+#define _qdc_Code_NOTYPE_DCS_365  0x3E
+#define _qdc_Code_NOTYPE_DCS_371  0x3F
+#define _qdc_Code_NOTYPE_DCS_411  0x40
+#define _qdc_Code_NOTYPE_DCS_412  0x41
+#define _qdc_Code_NOTYPE_DCS_413  0x42
+#define _qdc_Code_NOTYPE_DCS_423  0x43
+#define _qdc_Code_NOTYPE_DCS_431  0x44
+#define _qdc_Code_NOTYPE_DCS_432  0x45
+#define _qdc_Code_NOTYPE_DCS_445  0x46
+#define _qdc_Code_NOTYPE_DCS_446  0x47
+#define _qdc_Code_NOTYPE_DCS_452  0x48
+#define _qdc_Code_NOTYPE_DCS_454  0x49
+#define _qdc_Code_NOTYPE_DCS_455  0x4A
+#define _qdc_Code_NOTYPE_DCS_462  0x4B
+#define _qdc_Code_NOTYPE_DCS_464  0x4C
+#define _qdc_Code_NOTYPE_DCS_465  0x4D
+#define _qdc_Code_NOTYPE_DCS_466  0x4E
+#define _qdc_Code_NOTYPE_DCS_503  0x4F
+#define _qdc_Code_NOTYPE_DCS_506  0x50
+#define _qdc_Code_NOTYPE_DCS_516  0x51
+#define _qdc_Code_NOTYPE_DCS_523  0x52
+#define _qdc_Code_NOTYPE_DCS_526  0x53
+#define _qdc_Code_NOTYPE_DCS_532  0x54
+#define _qdc_Code_NOTYPE_DCS_546  0x55
+#define _qdc_Code_NOTYPE_DCS_565  0x56
+#define _qdc_Code_NOTYPE_DCS_606  0x57
+#define _qdc_Code_NOTYPE_DCS_612  0x58
+#define _qdc_Code_NOTYPE_DCS_624  0x59
+#define _qdc_Code_NOTYPE_DCS_627  0x5A
+#define _qdc_Code_NOTYPE_DCS_631  0x5B
+#define _qdc_Code_NOTYPE_DCS_632  0x5C
+#define _qdc_Code_NOTYPE_DCS_654  0x5D
+#define _qdc_Code_NOTYPE_DCS_662  0x5E
+#define _qdc_Code_NOTYPE_DCS_664  0x5F
+#define _qdc_Code_NOTYPE_DCS_703  0x60
+#define _qdc_Code_NOTYPE_DCS_712  0x61
+#define _qdc_Code_NOTYPE_DCS_723  0x62
+#define _qdc_Code_NOTYPE_DCS_731  0x63
+#define _qdc_Code_NOTYPE_DCS_732  0x64
+#define _qdc_Code_NOTYPE_DCS_734  0x65
+#define _qdc_Code_NOTYPE_DCS_743  0x66
+#define _qdc_Code_NOTYPE_DCS_754  0x67
+
+#define _qdc_Code_DCS_ENUM_ENTRY(code) \
+qdc_Code_DCS_##code = _qdc_Code_TYPE_DCS | _qdc_Code_NOTYPE_DCS_##code, \
+qdc_Code_DCS_INVERTED_##code = _qdc_Code_TYPE_DCS_INVERTED | _qdc_Code_NOTYPE_DCS_##code
 
 typedef enum qdc_Code {
     qdc_Code_NONE = _qdc_Code_TYPE_NONE,
@@ -62,215 +171,110 @@ typedef enum qdc_Code {
     qdc_Code_CTCSS_250_3 = _qdc_Code_TYPE_CTCSS | 0x30,
     qdc_Code_CTCSS_254_1 = _qdc_Code_TYPE_CTCSS | 0x31,
 
-    qdc_Code_DCS_23 = _qdc_Code_TYPE_DCS | 0x00,
-    qdc_Code_DCS_25 = _qdc_Code_TYPE_DCS | 0x01,
-    qdc_Code_DCS_26 = _qdc_Code_TYPE_DCS | 0x02,
-    qdc_Code_DCS_31 = _qdc_Code_TYPE_DCS | 0x03,
-    qdc_Code_DCS_32 = _qdc_Code_TYPE_DCS | 0x04,
-    qdc_Code_DCS_36 = _qdc_Code_TYPE_DCS | 0x05,
-    qdc_Code_DCS_43 = _qdc_Code_TYPE_DCS | 0x06,
-    qdc_Code_DCS_47 = _qdc_Code_TYPE_DCS | 0x07,
-    qdc_Code_DCS_51 = _qdc_Code_TYPE_DCS | 0x08,
-    qdc_Code_DCS_53 = _qdc_Code_TYPE_DCS | 0x09,
-    qdc_Code_DCS_54 = _qdc_Code_TYPE_DCS | 0x0A,
-    qdc_Code_DCS_65 = _qdc_Code_TYPE_DCS | 0x0B,
-    qdc_Code_DCS_71 = _qdc_Code_TYPE_DCS | 0x0C,
-    qdc_Code_DCS_72 = _qdc_Code_TYPE_DCS | 0x0D,
-    qdc_Code_DCS_73 = _qdc_Code_TYPE_DCS | 0x0E,
-    qdc_Code_DCS_74 = _qdc_Code_TYPE_DCS | 0x0F,
-    qdc_Code_DCS_114 = _qdc_Code_TYPE_DCS | 0x10,
-    qdc_Code_DCS_115 = _qdc_Code_TYPE_DCS | 0x11,
-    qdc_Code_DCS_116 = _qdc_Code_TYPE_DCS | 0x12,
-    qdc_Code_DCS_122 = _qdc_Code_TYPE_DCS | 0x13,
-    qdc_Code_DCS_125 = _qdc_Code_TYPE_DCS | 0x14,
-    qdc_Code_DCS_131 = _qdc_Code_TYPE_DCS | 0x15,
-    qdc_Code_DCS_132 = _qdc_Code_TYPE_DCS | 0x16,
-    qdc_Code_DCS_134 = _qdc_Code_TYPE_DCS | 0x17,
-    qdc_Code_DCS_143 = _qdc_Code_TYPE_DCS | 0x18,
-    qdc_Code_DCS_145 = _qdc_Code_TYPE_DCS | 0x19,
-    qdc_Code_DCS_152 = _qdc_Code_TYPE_DCS | 0x1A,
-    qdc_Code_DCS_155 = _qdc_Code_TYPE_DCS | 0x1B,
-    qdc_Code_DCS_156 = _qdc_Code_TYPE_DCS | 0x1C,
-    qdc_Code_DCS_162 = _qdc_Code_TYPE_DCS | 0x1D,
-    qdc_Code_DCS_165 = _qdc_Code_TYPE_DCS | 0x1E,
-    qdc_Code_DCS_172 = _qdc_Code_TYPE_DCS | 0x1F,
-    qdc_Code_DCS_174 = _qdc_Code_TYPE_DCS | 0x20,
-    qdc_Code_DCS_205 = _qdc_Code_TYPE_DCS | 0x21,
-    qdc_Code_DCS_212 = _qdc_Code_TYPE_DCS | 0x22,
-    qdc_Code_DCS_223 = _qdc_Code_TYPE_DCS | 0x23,
-    qdc_Code_DCS_225 = _qdc_Code_TYPE_DCS | 0x24,
-    qdc_Code_DCS_226 = _qdc_Code_TYPE_DCS | 0x25,
-    qdc_Code_DCS_243 = _qdc_Code_TYPE_DCS | 0x26,
-    qdc_Code_DCS_244 = _qdc_Code_TYPE_DCS | 0x27,
-    qdc_Code_DCS_245 = _qdc_Code_TYPE_DCS | 0x28,
-    qdc_Code_DCS_246 = _qdc_Code_TYPE_DCS | 0x29,
-    qdc_Code_DCS_251 = _qdc_Code_TYPE_DCS | 0x2A,
-    qdc_Code_DCS_252 = _qdc_Code_TYPE_DCS | 0x2B,
-    qdc_Code_DCS_255 = _qdc_Code_TYPE_DCS | 0x2C,
-    qdc_Code_DCS_261 = _qdc_Code_TYPE_DCS | 0x2D,
-    qdc_Code_DCS_263 = _qdc_Code_TYPE_DCS | 0x2E,
-    qdc_Code_DCS_265 = _qdc_Code_TYPE_DCS | 0x2F,
-    qdc_Code_DCS_266 = _qdc_Code_TYPE_DCS | 0x30,
-    qdc_Code_DCS_271 = _qdc_Code_TYPE_DCS | 0x31,
-    qdc_Code_DCS_274 = _qdc_Code_TYPE_DCS | 0x32,
-    qdc_Code_DCS_306 = _qdc_Code_TYPE_DCS | 0x33,
-    qdc_Code_DCS_311 = _qdc_Code_TYPE_DCS | 0x34,
-    qdc_Code_DCS_315 = _qdc_Code_TYPE_DCS | 0x35,
-    qdc_Code_DCS_325 = _qdc_Code_TYPE_DCS | 0x36,
-    qdc_Code_DCS_331 = _qdc_Code_TYPE_DCS | 0x37,
-    qdc_Code_DCS_332 = _qdc_Code_TYPE_DCS | 0x38,
-    qdc_Code_DCS_343 = _qdc_Code_TYPE_DCS | 0x39,
-    qdc_Code_DCS_346 = _qdc_Code_TYPE_DCS | 0x3A,
-    qdc_Code_DCS_351 = _qdc_Code_TYPE_DCS | 0x3B,
-    qdc_Code_DCS_356 = _qdc_Code_TYPE_DCS | 0x3C,
-    qdc_Code_DCS_364 = _qdc_Code_TYPE_DCS | 0x3D,
-    qdc_Code_DCS_365 = _qdc_Code_TYPE_DCS | 0x3E,
-    qdc_Code_DCS_371 = _qdc_Code_TYPE_DCS | 0x3F,
-    qdc_Code_DCS_411 = _qdc_Code_TYPE_DCS | 0x40,
-    qdc_Code_DCS_412 = _qdc_Code_TYPE_DCS | 0x41,
-    qdc_Code_DCS_413 = _qdc_Code_TYPE_DCS | 0x42,
-    qdc_Code_DCS_423 = _qdc_Code_TYPE_DCS | 0x43,
-    qdc_Code_DCS_431 = _qdc_Code_TYPE_DCS | 0x44,
-    qdc_Code_DCS_432 = _qdc_Code_TYPE_DCS | 0x45,
-    qdc_Code_DCS_445 = _qdc_Code_TYPE_DCS | 0x46,
-    qdc_Code_DCS_446 = _qdc_Code_TYPE_DCS | 0x47,
-    qdc_Code_DCS_452 = _qdc_Code_TYPE_DCS | 0x48,
-    qdc_Code_DCS_454 = _qdc_Code_TYPE_DCS | 0x49,
-    qdc_Code_DCS_455 = _qdc_Code_TYPE_DCS | 0x4A,
-    qdc_Code_DCS_462 = _qdc_Code_TYPE_DCS | 0x4B,
-    qdc_Code_DCS_464 = _qdc_Code_TYPE_DCS | 0x4C,
-    qdc_Code_DCS_465 = _qdc_Code_TYPE_DCS | 0x4D,
-    qdc_Code_DCS_466 = _qdc_Code_TYPE_DCS | 0x4E,
-    qdc_Code_DCS_503 = _qdc_Code_TYPE_DCS | 0x4F,
-    qdc_Code_DCS_506 = _qdc_Code_TYPE_DCS | 0x50,
-    qdc_Code_DCS_516 = _qdc_Code_TYPE_DCS | 0x51,
-    qdc_Code_DCS_523 = _qdc_Code_TYPE_DCS | 0x52,
-    qdc_Code_DCS_526 = _qdc_Code_TYPE_DCS | 0x53,
-    qdc_Code_DCS_532 = _qdc_Code_TYPE_DCS | 0x54,
-    qdc_Code_DCS_546 = _qdc_Code_TYPE_DCS | 0x55,
-    qdc_Code_DCS_565 = _qdc_Code_TYPE_DCS | 0x56,
-    qdc_Code_DCS_606 = _qdc_Code_TYPE_DCS | 0x57,
-    qdc_Code_DCS_612 = _qdc_Code_TYPE_DCS | 0x58,
-    qdc_Code_DCS_624 = _qdc_Code_TYPE_DCS | 0x59,
-    qdc_Code_DCS_627 = _qdc_Code_TYPE_DCS | 0x5A,
-    qdc_Code_DCS_631 = _qdc_Code_TYPE_DCS | 0x5B,
-    qdc_Code_DCS_632 = _qdc_Code_TYPE_DCS | 0x5C,
-    qdc_Code_DCS_654 = _qdc_Code_TYPE_DCS | 0x5D,
-    qdc_Code_DCS_662 = _qdc_Code_TYPE_DCS | 0x5E,
-    qdc_Code_DCS_664 = _qdc_Code_TYPE_DCS | 0x5F,
-    qdc_Code_DCS_703 = _qdc_Code_TYPE_DCS | 0x60,
-    qdc_Code_DCS_712 = _qdc_Code_TYPE_DCS | 0x61,
-    qdc_Code_DCS_723 = _qdc_Code_TYPE_DCS | 0x62,
-    qdc_Code_DCS_731 = _qdc_Code_TYPE_DCS | 0x63,
-    qdc_Code_DCS_732 = _qdc_Code_TYPE_DCS | 0x64,
-    qdc_Code_DCS_734 = _qdc_Code_TYPE_DCS | 0x65,
-    qdc_Code_DCS_743 = _qdc_Code_TYPE_DCS | 0x66,
-    qdc_Code_DCS_754 = _qdc_Code_TYPE_DCS | 0x67,
-
-    qdc_Code_DCS_INVERTED_23 = _qdc_Code_TYPE_DCS_INVERTED | 0x00,
-    qdc_Code_DCS_INVERTED_25 = _qdc_Code_TYPE_DCS_INVERTED | 0x01,
-    qdc_Code_DCS_INVERTED_26 = _qdc_Code_TYPE_DCS_INVERTED | 0x02,
-    qdc_Code_DCS_INVERTED_31 = _qdc_Code_TYPE_DCS_INVERTED | 0x03,
-    qdc_Code_DCS_INVERTED_32 = _qdc_Code_TYPE_DCS_INVERTED | 0x04,
-    qdc_Code_DCS_INVERTED_36 = _qdc_Code_TYPE_DCS_INVERTED | 0x05,
-    qdc_Code_DCS_INVERTED_43 = _qdc_Code_TYPE_DCS_INVERTED | 0x06,
-    qdc_Code_DCS_INVERTED_47 = _qdc_Code_TYPE_DCS_INVERTED | 0x07,
-    qdc_Code_DCS_INVERTED_51 = _qdc_Code_TYPE_DCS_INVERTED | 0x08,
-    qdc_Code_DCS_INVERTED_53 = _qdc_Code_TYPE_DCS_INVERTED | 0x09,
-    qdc_Code_DCS_INVERTED_54 = _qdc_Code_TYPE_DCS_INVERTED | 0x0A,
-    qdc_Code_DCS_INVERTED_65 = _qdc_Code_TYPE_DCS_INVERTED | 0x0B,
-    qdc_Code_DCS_INVERTED_71 = _qdc_Code_TYPE_DCS_INVERTED | 0x0C,
-    qdc_Code_DCS_INVERTED_72 = _qdc_Code_TYPE_DCS_INVERTED | 0x0D,
-    qdc_Code_DCS_INVERTED_73 = _qdc_Code_TYPE_DCS_INVERTED | 0x0E,
-    qdc_Code_DCS_INVERTED_74 = _qdc_Code_TYPE_DCS_INVERTED | 0x0F,
-    qdc_Code_DCS_INVERTED_114 = _qdc_Code_TYPE_DCS_INVERTED | 0x10,
-    qdc_Code_DCS_INVERTED_115 = _qdc_Code_TYPE_DCS_INVERTED | 0x11,
-    qdc_Code_DCS_INVERTED_116 = _qdc_Code_TYPE_DCS_INVERTED | 0x12,
-    qdc_Code_DCS_INVERTED_122 = _qdc_Code_TYPE_DCS_INVERTED | 0x13,
-    qdc_Code_DCS_INVERTED_125 = _qdc_Code_TYPE_DCS_INVERTED | 0x14,
-    qdc_Code_DCS_INVERTED_131 = _qdc_Code_TYPE_DCS_INVERTED | 0x15,
-    qdc_Code_DCS_INVERTED_132 = _qdc_Code_TYPE_DCS_INVERTED | 0x16,
-    qdc_Code_DCS_INVERTED_134 = _qdc_Code_TYPE_DCS_INVERTED | 0x17,
-    qdc_Code_DCS_INVERTED_143 = _qdc_Code_TYPE_DCS_INVERTED | 0x18,
-    qdc_Code_DCS_INVERTED_145 = _qdc_Code_TYPE_DCS_INVERTED | 0x19,
-    qdc_Code_DCS_INVERTED_152 = _qdc_Code_TYPE_DCS_INVERTED | 0x1A,
-    qdc_Code_DCS_INVERTED_155 = _qdc_Code_TYPE_DCS_INVERTED | 0x1B,
-    qdc_Code_DCS_INVERTED_156 = _qdc_Code_TYPE_DCS_INVERTED | 0x1C,
-    qdc_Code_DCS_INVERTED_162 = _qdc_Code_TYPE_DCS_INVERTED | 0x1D,
-    qdc_Code_DCS_INVERTED_165 = _qdc_Code_TYPE_DCS_INVERTED | 0x1E,
-    qdc_Code_DCS_INVERTED_172 = _qdc_Code_TYPE_DCS_INVERTED | 0x1F,
-    qdc_Code_DCS_INVERTED_174 = _qdc_Code_TYPE_DCS_INVERTED | 0x20,
-    qdc_Code_DCS_INVERTED_205 = _qdc_Code_TYPE_DCS_INVERTED | 0x21,
-    qdc_Code_DCS_INVERTED_212 = _qdc_Code_TYPE_DCS_INVERTED | 0x22,
-    qdc_Code_DCS_INVERTED_223 = _qdc_Code_TYPE_DCS_INVERTED | 0x23,
-    qdc_Code_DCS_INVERTED_225 = _qdc_Code_TYPE_DCS_INVERTED | 0x24,
-    qdc_Code_DCS_INVERTED_226 = _qdc_Code_TYPE_DCS_INVERTED | 0x25,
-    qdc_Code_DCS_INVERTED_243 = _qdc_Code_TYPE_DCS_INVERTED | 0x26,
-    qdc_Code_DCS_INVERTED_244 = _qdc_Code_TYPE_DCS_INVERTED | 0x27,
-    qdc_Code_DCS_INVERTED_245 = _qdc_Code_TYPE_DCS_INVERTED | 0x28,
-    qdc_Code_DCS_INVERTED_246 = _qdc_Code_TYPE_DCS_INVERTED | 0x29,
-    qdc_Code_DCS_INVERTED_251 = _qdc_Code_TYPE_DCS_INVERTED | 0x2A,
-    qdc_Code_DCS_INVERTED_252 = _qdc_Code_TYPE_DCS_INVERTED | 0x2B,
-    qdc_Code_DCS_INVERTED_255 = _qdc_Code_TYPE_DCS_INVERTED | 0x2C,
-    qdc_Code_DCS_INVERTED_261 = _qdc_Code_TYPE_DCS_INVERTED | 0x2D,
-    qdc_Code_DCS_INVERTED_263 = _qdc_Code_TYPE_DCS_INVERTED | 0x2E,
-    qdc_Code_DCS_INVERTED_265 = _qdc_Code_TYPE_DCS_INVERTED | 0x2F,
-    qdc_Code_DCS_INVERTED_266 = _qdc_Code_TYPE_DCS_INVERTED | 0x30,
-    qdc_Code_DCS_INVERTED_271 = _qdc_Code_TYPE_DCS_INVERTED | 0x31,
-    qdc_Code_DCS_INVERTED_274 = _qdc_Code_TYPE_DCS_INVERTED | 0x32,
-    qdc_Code_DCS_INVERTED_306 = _qdc_Code_TYPE_DCS_INVERTED | 0x33,
-    qdc_Code_DCS_INVERTED_311 = _qdc_Code_TYPE_DCS_INVERTED | 0x34,
-    qdc_Code_DCS_INVERTED_315 = _qdc_Code_TYPE_DCS_INVERTED | 0x35,
-    qdc_Code_DCS_INVERTED_325 = _qdc_Code_TYPE_DCS_INVERTED | 0x36,
-    qdc_Code_DCS_INVERTED_331 = _qdc_Code_TYPE_DCS_INVERTED | 0x37,
-    qdc_Code_DCS_INVERTED_332 = _qdc_Code_TYPE_DCS_INVERTED | 0x38,
-    qdc_Code_DCS_INVERTED_343 = _qdc_Code_TYPE_DCS_INVERTED | 0x39,
-    qdc_Code_DCS_INVERTED_346 = _qdc_Code_TYPE_DCS_INVERTED | 0x3A,
-    qdc_Code_DCS_INVERTED_351 = _qdc_Code_TYPE_DCS_INVERTED | 0x3B,
-    qdc_Code_DCS_INVERTED_356 = _qdc_Code_TYPE_DCS_INVERTED | 0x3C,
-    qdc_Code_DCS_INVERTED_364 = _qdc_Code_TYPE_DCS_INVERTED | 0x3D,
-    qdc_Code_DCS_INVERTED_365 = _qdc_Code_TYPE_DCS_INVERTED | 0x3E,
-    qdc_Code_DCS_INVERTED_371 = _qdc_Code_TYPE_DCS_INVERTED | 0x3F,
-    qdc_Code_DCS_INVERTED_411 = _qdc_Code_TYPE_DCS_INVERTED | 0x40,
-    qdc_Code_DCS_INVERTED_412 = _qdc_Code_TYPE_DCS_INVERTED | 0x41,
-    qdc_Code_DCS_INVERTED_413 = _qdc_Code_TYPE_DCS_INVERTED | 0x42,
-    qdc_Code_DCS_INVERTED_423 = _qdc_Code_TYPE_DCS_INVERTED | 0x43,
-    qdc_Code_DCS_INVERTED_431 = _qdc_Code_TYPE_DCS_INVERTED | 0x44,
-    qdc_Code_DCS_INVERTED_432 = _qdc_Code_TYPE_DCS_INVERTED | 0x45,
-    qdc_Code_DCS_INVERTED_445 = _qdc_Code_TYPE_DCS_INVERTED | 0x46,
-    qdc_Code_DCS_INVERTED_446 = _qdc_Code_TYPE_DCS_INVERTED | 0x47,
-    qdc_Code_DCS_INVERTED_452 = _qdc_Code_TYPE_DCS_INVERTED | 0x48,
-    qdc_Code_DCS_INVERTED_454 = _qdc_Code_TYPE_DCS_INVERTED | 0x49,
-    qdc_Code_DCS_INVERTED_455 = _qdc_Code_TYPE_DCS_INVERTED | 0x4A,
-    qdc_Code_DCS_INVERTED_462 = _qdc_Code_TYPE_DCS_INVERTED | 0x4B,
-    qdc_Code_DCS_INVERTED_464 = _qdc_Code_TYPE_DCS_INVERTED | 0x4C,
-    qdc_Code_DCS_INVERTED_465 = _qdc_Code_TYPE_DCS_INVERTED | 0x4D,
-    qdc_Code_DCS_INVERTED_466 = _qdc_Code_TYPE_DCS_INVERTED | 0x4E,
-    qdc_Code_DCS_INVERTED_503 = _qdc_Code_TYPE_DCS_INVERTED | 0x4F,
-    qdc_Code_DCS_INVERTED_506 = _qdc_Code_TYPE_DCS_INVERTED | 0x50,
-    qdc_Code_DCS_INVERTED_516 = _qdc_Code_TYPE_DCS_INVERTED | 0x51,
-    qdc_Code_DCS_INVERTED_523 = _qdc_Code_TYPE_DCS_INVERTED | 0x52,
-    qdc_Code_DCS_INVERTED_526 = _qdc_Code_TYPE_DCS_INVERTED | 0x53,
-    qdc_Code_DCS_INVERTED_532 = _qdc_Code_TYPE_DCS_INVERTED | 0x54,
-    qdc_Code_DCS_INVERTED_546 = _qdc_Code_TYPE_DCS_INVERTED | 0x55,
-    qdc_Code_DCS_INVERTED_565 = _qdc_Code_TYPE_DCS_INVERTED | 0x56,
-    qdc_Code_DCS_INVERTED_606 = _qdc_Code_TYPE_DCS_INVERTED | 0x57,
-    qdc_Code_DCS_INVERTED_612 = _qdc_Code_TYPE_DCS_INVERTED | 0x58,
-    qdc_Code_DCS_INVERTED_624 = _qdc_Code_TYPE_DCS_INVERTED | 0x59,
-    qdc_Code_DCS_INVERTED_627 = _qdc_Code_TYPE_DCS_INVERTED | 0x5A,
-    qdc_Code_DCS_INVERTED_631 = _qdc_Code_TYPE_DCS_INVERTED | 0x5B,
-    qdc_Code_DCS_INVERTED_632 = _qdc_Code_TYPE_DCS_INVERTED | 0x5C,
-    qdc_Code_DCS_INVERTED_654 = _qdc_Code_TYPE_DCS_INVERTED | 0x5D,
-    qdc_Code_DCS_INVERTED_662 = _qdc_Code_TYPE_DCS_INVERTED | 0x5E,
-    qdc_Code_DCS_INVERTED_664 = _qdc_Code_TYPE_DCS_INVERTED | 0x5F,
-    qdc_Code_DCS_INVERTED_703 = _qdc_Code_TYPE_DCS_INVERTED | 0x60,
-    qdc_Code_DCS_INVERTED_712 = _qdc_Code_TYPE_DCS_INVERTED | 0x61,
-    qdc_Code_DCS_INVERTED_723 = _qdc_Code_TYPE_DCS_INVERTED | 0x62,
-    qdc_Code_DCS_INVERTED_731 = _qdc_Code_TYPE_DCS_INVERTED | 0x63,
-    qdc_Code_DCS_INVERTED_732 = _qdc_Code_TYPE_DCS_INVERTED | 0x64,
-    qdc_Code_DCS_INVERTED_734 = _qdc_Code_TYPE_DCS_INVERTED | 0x65,
-    qdc_Code_DCS_INVERTED_743 = _qdc_Code_TYPE_DCS_INVERTED | 0x66,
-    qdc_Code_DCS_INVERTED_754 = _qdc_Code_TYPE_DCS_INVERTED | 0x67,
+    _qdc_Code_DCS_ENUM_ENTRY(23),
+    _qdc_Code_DCS_ENUM_ENTRY(25),
+    _qdc_Code_DCS_ENUM_ENTRY(26),
+    _qdc_Code_DCS_ENUM_ENTRY(31),
+    _qdc_Code_DCS_ENUM_ENTRY(32),
+    _qdc_Code_DCS_ENUM_ENTRY(36),
+    _qdc_Code_DCS_ENUM_ENTRY(43),
+    _qdc_Code_DCS_ENUM_ENTRY(47),
+    _qdc_Code_DCS_ENUM_ENTRY(51),
+    _qdc_Code_DCS_ENUM_ENTRY(53),
+    _qdc_Code_DCS_ENUM_ENTRY(54),
+    _qdc_Code_DCS_ENUM_ENTRY(65),
+    _qdc_Code_DCS_ENUM_ENTRY(71),
+    _qdc_Code_DCS_ENUM_ENTRY(72),
+    _qdc_Code_DCS_ENUM_ENTRY(73),
+    _qdc_Code_DCS_ENUM_ENTRY(74),
+    _qdc_Code_DCS_ENUM_ENTRY(114),
+    _qdc_Code_DCS_ENUM_ENTRY(115),
+    _qdc_Code_DCS_ENUM_ENTRY(116),
+    _qdc_Code_DCS_ENUM_ENTRY(122),
+    _qdc_Code_DCS_ENUM_ENTRY(125),
+    _qdc_Code_DCS_ENUM_ENTRY(131),
+    _qdc_Code_DCS_ENUM_ENTRY(132),
+    _qdc_Code_DCS_ENUM_ENTRY(134),
+    _qdc_Code_DCS_ENUM_ENTRY(143),
+    _qdc_Code_DCS_ENUM_ENTRY(145),
+    _qdc_Code_DCS_ENUM_ENTRY(152),
+    _qdc_Code_DCS_ENUM_ENTRY(155),
+    _qdc_Code_DCS_ENUM_ENTRY(156),
+    _qdc_Code_DCS_ENUM_ENTRY(162),
+    _qdc_Code_DCS_ENUM_ENTRY(165),
+    _qdc_Code_DCS_ENUM_ENTRY(172),
+    _qdc_Code_DCS_ENUM_ENTRY(174),
+    _qdc_Code_DCS_ENUM_ENTRY(205),
+    _qdc_Code_DCS_ENUM_ENTRY(212),
+    _qdc_Code_DCS_ENUM_ENTRY(223),
+    _qdc_Code_DCS_ENUM_ENTRY(225),
+    _qdc_Code_DCS_ENUM_ENTRY(226),
+    _qdc_Code_DCS_ENUM_ENTRY(243),
+    _qdc_Code_DCS_ENUM_ENTRY(244),
+    _qdc_Code_DCS_ENUM_ENTRY(245),
+    _qdc_Code_DCS_ENUM_ENTRY(246),
+    _qdc_Code_DCS_ENUM_ENTRY(251),
+    _qdc_Code_DCS_ENUM_ENTRY(252),
+    _qdc_Code_DCS_ENUM_ENTRY(255),
+    _qdc_Code_DCS_ENUM_ENTRY(261),
+    _qdc_Code_DCS_ENUM_ENTRY(263),
+    _qdc_Code_DCS_ENUM_ENTRY(265),
+    _qdc_Code_DCS_ENUM_ENTRY(266),
+    _qdc_Code_DCS_ENUM_ENTRY(271),
+    _qdc_Code_DCS_ENUM_ENTRY(274),
+    _qdc_Code_DCS_ENUM_ENTRY(306),
+    _qdc_Code_DCS_ENUM_ENTRY(311),
+    _qdc_Code_DCS_ENUM_ENTRY(315),
+    _qdc_Code_DCS_ENUM_ENTRY(325),
+    _qdc_Code_DCS_ENUM_ENTRY(331),
+    _qdc_Code_DCS_ENUM_ENTRY(332),
+    _qdc_Code_DCS_ENUM_ENTRY(343),
+    _qdc_Code_DCS_ENUM_ENTRY(346),
+    _qdc_Code_DCS_ENUM_ENTRY(351),
+    _qdc_Code_DCS_ENUM_ENTRY(356),
+    _qdc_Code_DCS_ENUM_ENTRY(364),
+    _qdc_Code_DCS_ENUM_ENTRY(365),
+    _qdc_Code_DCS_ENUM_ENTRY(371),
+    _qdc_Code_DCS_ENUM_ENTRY(411),
+    _qdc_Code_DCS_ENUM_ENTRY(412),
+    _qdc_Code_DCS_ENUM_ENTRY(413),
+    _qdc_Code_DCS_ENUM_ENTRY(423),
+    _qdc_Code_DCS_ENUM_ENTRY(431),
+    _qdc_Code_DCS_ENUM_ENTRY(432),
+    _qdc_Code_DCS_ENUM_ENTRY(445),
+    _qdc_Code_DCS_ENUM_ENTRY(446),
+    _qdc_Code_DCS_ENUM_ENTRY(452),
+    _qdc_Code_DCS_ENUM_ENTRY(454),
+    _qdc_Code_DCS_ENUM_ENTRY(455),
+    _qdc_Code_DCS_ENUM_ENTRY(462),
+    _qdc_Code_DCS_ENUM_ENTRY(464),
+    _qdc_Code_DCS_ENUM_ENTRY(465),
+    _qdc_Code_DCS_ENUM_ENTRY(466),
+    _qdc_Code_DCS_ENUM_ENTRY(503),
+    _qdc_Code_DCS_ENUM_ENTRY(506),
+    _qdc_Code_DCS_ENUM_ENTRY(516),
+    _qdc_Code_DCS_ENUM_ENTRY(523),
+    _qdc_Code_DCS_ENUM_ENTRY(526),
+    _qdc_Code_DCS_ENUM_ENTRY(532),
+    _qdc_Code_DCS_ENUM_ENTRY(546),
+    _qdc_Code_DCS_ENUM_ENTRY(565),
+    _qdc_Code_DCS_ENUM_ENTRY(606),
+    _qdc_Code_DCS_ENUM_ENTRY(612),
+    _qdc_Code_DCS_ENUM_ENTRY(624),
+    _qdc_Code_DCS_ENUM_ENTRY(627),
+    _qdc_Code_DCS_ENUM_ENTRY(631),
+    _qdc_Code_DCS_ENUM_ENTRY(632),
+    _qdc_Code_DCS_ENUM_ENTRY(654),
+    _qdc_Code_DCS_ENUM_ENTRY(662),
+    _qdc_Code_DCS_ENUM_ENTRY(664),
+    _qdc_Code_DCS_ENUM_ENTRY(703),
+    _qdc_Code_DCS_ENUM_ENTRY(712),
+    _qdc_Code_DCS_ENUM_ENTRY(723),
+    _qdc_Code_DCS_ENUM_ENTRY(731),
+    _qdc_Code_DCS_ENUM_ENTRY(732),
+    _qdc_Code_DCS_ENUM_ENTRY(734),
+    _qdc_Code_DCS_ENUM_ENTRY(743),
+    _qdc_Code_DCS_ENUM_ENTRY(754)
 } qdc_Code;
 
 typedef enum qdc_Modulation {
@@ -344,7 +348,7 @@ typedef enum qdc_ScrambleMode {
 
 typedef struct qdc_Channel {
     unsigned long rxFrequency;
-    unsigned int txOffset;
+    unsigned long txOffset;
     qdc_Code txCode;
     qdc_Code rxCode;
     qdc_Modulation modulation;

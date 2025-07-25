@@ -9,11 +9,13 @@ COMBINED_HEADER := $(PROJECT).h
 HEADERS := $(shell find -name '*.h' ! -name '_*' ! -path './internal/*')
 BUILD_HEADERS := $(patsubst %, $(BUILD_DIR)/%, $(HEADERS))
 
+CFLAGS += -Wall -Wextra -Wpedantic -Werror
+
 ifeq ($(IS_RELEASE), yes)
 	CFLAGS += -O2
 	LDFLAGS += -s
 else
-	CFLAGS += -g -Wall
+	CFLAGS += -g
 endif
 
 ifeq ($(EXECUTABLE_TYPE), library)
