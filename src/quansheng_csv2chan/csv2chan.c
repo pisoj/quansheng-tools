@@ -19,25 +19,31 @@ typedef enum qdc_FileReadNextLineErr {
  */
 qdc_FileReadNextLineErr qdc_fileReadNextLine(FILE *file, char **line) {
     *line = NULL;
-    size_t buffLen = 1024;
+    size_t buffLen = 5;
     char *buff = malloc(buffLen);
     buff[0] = '\0'; // If we are already at the end of the file buffer will remain unchanged
     if (buff == NULL) return qdc_FileReadNextLineErr_FAILED_TO_ALLOCATE_MEMORY;
 
-    while (fgets(buff, buffLen, file) != NULL) {
-        size_t len = strlen(buff);
+    size_t len = 0;
+    int i = 0;
+    while (fgets(buff + len, buffLen - len, file) != NULL) {
+        len = strlen(buff);
         if ((len > 0 && buff[len - 1] == '\n') || feof(file)) {
             *line = buff;
+            printf("Read:\n%s\n\n", buff);
             return qdc_FileReadNextLineErr_NONE;
         } else {
             // no newline and not EOF, line was too long
             buffLen *= 2;
+            printf("To Realloc: %d, index: %d\n", (int)buffLen, i);
             char *newbuff = realloc(buff, buffLen);
             if (newbuff == NULL) {
                 free(buff);
                 return qdc_FileReadNextLineErr_FAILED_TO_ALLOCATE_MEMORY;
             };
+            buff = newbuff;
         }
+        i++;
     }
     if (buff[0] == '\0') return qdc_FileReadNextLineErr_END_OF_FILE_ALREADY_REACHED;
 
