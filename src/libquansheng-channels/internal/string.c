@@ -9,7 +9,6 @@ int qdc_strCmpSafe(const char *str1, size_t str1size, const char *str2, size_t s
 }
 
 _Bool qdc_strIsEmpty(const char *str, size_t len) {
-    if (*str == '\0') { return true; }
     for (size_t i = 0; i < len; i++) {
         if (str[i] != ' ' && str[i] != '\0') { return false; }
     }

@@ -34,6 +34,7 @@ typedef enum qdc_ChanSetChannelErr {
     qdc_ChanSetChannelErr_INVALID_CHANNEL_NAME = 5,
     qdc_ChanSetChannelErr_NON_ASCII_CHANNEL_NAME_AUTOFIXED = 6,
 } qdc_ChanSetChannelErr;
+
 qdc_ChanSetChannelErr qdc_chanSetChannel(qdc_Chan *chan, unsigned int channelNumber, const qdc_Channel *ch);
 
 #endif
