@@ -1,5 +1,3 @@
-#include <libquansheng-channels/channel.h>
-#include <libquansheng-channels/csv.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -91,30 +89,33 @@ int main(int argc, char *argv[]) {
             break;
     }
     size_t lineLen = strlen(line);
-    size_t csvColumnCount = qdc_csvGetColumnCount(line, lineLen);
-    printf("Column count: %d\n", (int)csvColumnCount);
-    void *parsers = malloc(sizeof(void*[csvColumnCount]));
-    qdc_CsvChirpParseHeaderErr eer = qdc_csvChirpParseHeader(line, lineLen, parsers, csvColumnCount);
-    printf("parse header error: %d\n", eer);
+
+    qdc_CsvChirp *csv = qdc_csvChirpNew(line, lineLen);
+
     free(line);
 
-    switch (qdc_fileReadNextLine(csvFile, &line)) {
-        case qdc_FileReadNextLineErr_FAILED_TO_ALLOCATE_MEMORY:
-            printf("qdc_FileReadNextLineErr_FAILED_TO_ALLOCATE_MEMORY\n");
-            return 1;
-        case qdc_FileReadNextLineErr_END_OF_FILE_ALREADY_REACHED:
-            printf("qdc_FileReadNextLineErr_END_OF_FILE_ALREADY_REACHED\n");
-            return 1;
-        default:
-            break;
+    size_t index = 0;
+    while (true) {
+        qdc_FileReadNextLineErr error = qdc_fileReadNextLine(csvFile, &line);
+        if (error != qdc_FileReadNextLineErr_NONE) {
+            if (error == qdc_FileReadNextLineErr_END_OF_FILE_ALREADY_REACHED) {
+                printf("qdc_FileReadNextLineErr_END_OF_FILE_ALREADY_REACHED\n");
+                break;
+            } else if (error == qdc_FileReadNextLineErr_FAILED_TO_ALLOCATE_MEMORY) {
+                printf("qdc_FileReadNextLineErr_FAILED_TO_ALLOCATE_MEMORY\n");
+                return 1;
+            }
+        }
+        lineLen = strlen(line);
+        qdc_Channel ch;
+        unsigned long chIndex;
+        qdc_CsvChirpParseChannelErr perr = qdc_csvChirpParseChannel(csv, line, lineLen, &chIndex, &ch);
+        printf("Index: %d, chIndex %d, Ch parser result: %b\n", (int)index, (int)chIndex, perr);
+        qdc_chanSetChannel(&chan, chIndex, &ch);
+        index++;
     }
-    lineLen = strlen(line);
-    qdc_Channel ch;
-    qdc_CsvChirpParseChannelErr perr = qdc_csvChirpParseChannel(line, lineLen, &ch, parsers);
-    printf("Ch parser error: %b\n", perr);
-    qdc_chanSetChannel(&chan, 2, &ch);
 
-    free(parsers);
+    qdc_csvChirpDestroy(csv);
 
     fwrite(&chan ,sizeof(chan), 1, chanFile);
 
