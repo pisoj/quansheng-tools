@@ -8,8 +8,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include <stdio.h>
-
 typedef enum qdc_CsvChirpCrossMode {
     qdc_CsvChirpCrossMode_NONE = 0,
     qdc_CsvChirpCrossMode_TONE = 1,
@@ -361,7 +359,6 @@ void qdc_csvChirpParseDefered(const qdc_CsvChirpParserDefer *defer, qdc_Channel 
 }
 
 void qdc_csvChirpParseHeader(qdc_CsvChirp *csv, const char *csvHeaderLine, unsigned long csvHeaderLen) {
-    printf("Column COUNT: %d\n\n", (int)csv->columnCount);
     qdc_csvForEachColumn(csvHeaderLine, csvHeaderLen, csv->columnCount,
         if (qdc_csvAreFieldsEqual(fieldStart, fieldEnd - fieldStart, "Location")) {
             csv->columnParsers[i] = qdc_csvChirpParseLocation;
@@ -406,14 +403,11 @@ qdc_CsvChirpParseChannelErr qdc_csvChirpParseChannel(const qdc_CsvChirp *csv, co
     qdc_CsvChirpParseChannelErr result = qdc_CsvChirpParseChannelErr_NONE;
 
     qdc_csvForEachColumn(csvLine, csvLineLen, csv->columnCount,
-        printf("Now doing column: %d with parser %d length: %d\n", (int)i, (int)(unsigned long)csv->columnParsers[i], (int)(fieldEnd - fieldStart - 1));
         result |= csv->columnParsers[i](fieldStart, fieldEnd - fieldStart - 1, ch, &defer);
     )
 
-    printf("Doing defer\n");
     qdc_csvChirpParseDefered(&defer, ch);
     *chIndex = defer.location;
-    printf("DOne\n");
     return result;
 }
 

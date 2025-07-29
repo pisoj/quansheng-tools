@@ -1,9 +1,8 @@
-#include <libquansheng-channels/csvChirpFromFile.h>
+#include <libquansheng-channels/chan.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include <libquansheng-channels/libquansheng-channels.h>
@@ -14,43 +13,19 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    //FILE *csvFile = fopen(argv[1], "r");
-
-    /*qdc_Channel channel = {
-        .rxFrequency = 145750000,
-        .txOffset = 600,
-        .txCode = qdc_Code_CTCSS_254_1,
-        .rxCode = qdc_Code_NONE,
-        .modulation = qdc_Modulation_FM,
-        .offsetDirection = qdc_OffsetDirection_MINUS,
-        .preventTxWhileReceiving = true,
-        .outputPower = qdc_OutputPower_MEDIUM,
-        .bandwidth = qdc_Bandwidth_WIDE,
-        .swapRxAndTxFrequencies = false,
-        .pttIdMode = qdc_PttId_BEGIN_END,
-        .enableDtmf = true,
-        .frequencyStep = qdc_FrequencyStep_25,
-        .scrambleMode = qdc_Scramble_NONE,
-        .name = " ššs",
-        .includeInScanList1 = false,
-        .includeInScanList2 = true,
-        .enableRxCompander = false,
-        .enableTxCompander = true,
-    };*/
     qdc_Chan chan = {0};
-    //qdc_chanSetChannel(&chan, 1, &channel);
 
     qdc_CsvChirpFile *csvFile;
     switch (qdc_csvChirpFromFileNew(argv[1], &csvFile)) {
         case qdc_CsvChirpFromFileNewErr_FAILED_TO_ALLOCATE_MEMORY:
             fprintf(stderr, "Error: Failed to allocate memory.\n");
-            return 1;
+            return 2;
         case qdc_CsvChirpFromFileNewErr_FAILED_TO_OPEN_FILE:
             fprintf(stderr, "Error: Failed to open the csv file: %s", argv[1]);
-            return 2;
+            return 3;
         case qdc_CsvChirpFromFileNewErr_EMPTY_FILE:
             fprintf(stderr, "Error: The file %s is empty.\n", argv[1]);
-            return 3;
+            return 4;
         case qdc_CsvChirpFromFileNewErr_NONE:
             break;
     }
@@ -89,7 +64,26 @@ int main(int argc, char *argv[]) {
         } else {
             fprintf(stderr, "Error: An unknown error ocured while parding the channel #%lu %s. Tryign to porceed to the next channel...\n", chIndex, ch.name);
         }
-        qdc_chanSetChannel(&chan, chIndex, &ch);
+
+        switch (qdc_chanSetChannel(&chan, chIndex, &ch)) {
+            case qdc_ChanSetChannelErr_NONE:
+                break;
+            case qdc_ChanSetChannelErr_MAX_CHANNEL_NUMBER_IS_199:
+                fprintf(stderr, "Error: Discarding channel #%lu %s because it does not fit into radio memory. Maximum number of channels is 200. Discarding channel.\n", chIndex, ch.name);
+                break;
+            case qdc_ChanSetChannelErr_MAX_RX_FREQUENCY_IS_1300000000:
+                fprintf(stderr, "Error: Frequency of channel #%lu %s exceeds the limit of 1.3 GHz. Discarding channel.\n", chIndex, ch.name);
+                break;
+            case qdc_ChanSetChannelErr_TX_OFFSET_BIGGER_THAN_RX_FREQUENCY:
+                fprintf(stderr, "Error: Tx offset of channel #%lu %s is bigger than rx frequency. Discarding channel.\n", chIndex, ch.name);
+                break;
+            case qdc_ChanSetChannelErr_INVALID_CHANNEL_NAME:
+                fprintf(stderr, "Error: Name of the channel #%lu %s is invalid. Discarding channel.\n", chIndex, ch.name);
+                break;
+            case qdc_ChanSetChannelErr_NON_ASCII_CHANNEL_NAME_AUTOFIXED:
+                fprintf(stderr, "Warning: Name of the channel #%lu %s contains non-ASCII characters. Discarding invalid characters.\n", chIndex, ch.name);
+                break;
+        }
     }
 
     qdc_csvChirpFromFileDestory(csvFile);
@@ -97,13 +91,12 @@ int main(int argc, char *argv[]) {
     FILE *chanFile = fopen(argv[2], "wb");
     if (chanFile == NULL) {
         fprintf(stderr, "Error: Failed to open the destination chan file.\n");
-        return 4;
+        return 5;
     }
 
     fwrite(&chan ,sizeof(chan), 1, chanFile);
 
     fclose(chanFile);
-    //fclose(csvFile);
 
     return 0;
 }

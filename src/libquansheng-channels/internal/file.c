@@ -15,7 +15,6 @@ qdc_FileReadNextLineErr qdc_fileReadNextLine(FILE *file, char **line) {
         len = strlen(buff);
         if ((len > 0 && buff[len - 1] == '\n') || feof(file)) {
             *line = buff;
-            printf("Read:\n%s\n\n", buff);
             return qdc_FileReadNextLineErr_NONE;
         } else {
             // no newline and no EOF, line was too long

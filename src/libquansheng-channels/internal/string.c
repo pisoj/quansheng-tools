@@ -42,9 +42,9 @@ const char *qdc_strFindNext(const char *str, size_t len, char target) {
 }
 
 qdc_strToNumberErr qdc_strToLong(const char *str, size_t len, long *destination) {
-    char strsafe[len + sizeof(char)];
+    char strsafe[len + 1];
     strncpy(strsafe, str, len);
-    strsafe[len + sizeof(char)] = '\0';
+    strsafe[len] = '\0';
 
     char *startOfInvalid = NULL;
     long num = strtol(strsafe, &startOfInvalid, 10);
@@ -54,9 +54,9 @@ qdc_strToNumberErr qdc_strToLong(const char *str, size_t len, long *destination)
 }
 
 qdc_strToNumberErr qdc_strToFloat(const char *str, size_t len, float *destination) {
-    char strsafe[len + sizeof(char)];
+    char strsafe[len + 1];
     strncpy(strsafe, str, len);
-    strsafe[len + sizeof(char)] = '\0';
+    strsafe[len] = '\0';
 
     char *startOfInvalid = NULL;
     float num = strtof(strsafe, &startOfInvalid);
@@ -66,9 +66,9 @@ qdc_strToNumberErr qdc_strToFloat(const char *str, size_t len, float *destinatio
 }
 
 qdc_strToNumberErr qdc_strToDouble(const char *str, size_t len, double *destination) {
-    char strsafe[len + sizeof(char)];
+    char strsafe[len + 1];
     strncpy(strsafe, str, len);
-    strsafe[len + sizeof(char)] = '\0';
+    strsafe[len] = '\0';
 
     char *startOfInvalid = NULL;
     double num = strtod(strsafe, &startOfInvalid);
