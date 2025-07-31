@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Quansheng channel tool
+Description=Convert between channel formats for different UV-K5 firmwares.
+Exec=/usr/local/bin/quansheng-channels_gui
+Icon=quansheng-channels_gui
+Type=Application
+Categories=HamRadio;Utility;

@@ -24,7 +24,7 @@ qdc_ChanSetChannelErr qdc_chanSetChannel(qdc_Chan *chan, unsigned int channelNum
     if (replacedCharactersCount > 0) {
         result = qdc_ChanSetChannelErr_NON_ASCII_CHANNEL_NAME_AUTOFIXED;
     }
-    strncpy(chan->_name[channelNumber], name, _qdc_CHANNEL_NAME_MAX_CHARACTERS);
+    memcpy(chan->_name[channelNumber], name, _qdc_CHANNEL_NAME_MAX_CHARACTERS);
     qdc_strMakeLengthFixed(chan->_name[channelNumber], sizeof(name), ' ');
 
 
