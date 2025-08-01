@@ -11,9 +11,11 @@
 ![Screenshoot of the GUI utility for converting CSV to CHAN files](./screenshoot.avif)
 
 ## Windows
-### Download your usual [`exe`](https://github.com/pisoj/og-nettools/releases/latest) (it contains both **system-wide** and **portable** installation options)
+### Download your usual [`exe`](https://github.com/pisoj/og-nettools/releases/latest)
+The installer gives you both **system-wide** and **portable** installation options
+
 ## Linux
-### You can also download precompiled [binaries for Linux](https://github.com/pisoj/og-nettools/releases/latest).
+### You can also download precompiled [binaries for Linux](https://github.com/pisoj/quansheng-tools/releases/latest).
 
 ### From source
 ```shell
@@ -41,22 +43,27 @@ LD_LIBRARY_PATH=../libquansheng-channels:../lib/iup ./quansheng-channels_gui
 ```
 
 ## Compiling for Windows
-Compiling for Windows is done using Linux and [MinGW](https://fedoraproject.org/wiki/MinGW/Tutorial)
+Compiling for Windows is done on Linux by cross-compiling with [MinGW](https://fedoraproject.org/wiki/MinGW/Tutorial).
+To install `MinGW` on Fedora run:
 ```shell
-Fedora: sudo dnf install mingw64-gcc (or mingw32-gcc if you want a 32-bit Windows binary)
+sudo dnf install mingw64-gcc (or mingw32-gcc if you want a 32-bit Windows binary)
 ```
 Then, **instead of** normal `make`, use:
 ```shell
+mingw64-make clean
 mingw64-make -j8
 ```
+> Note: If you have previously compiled for Linux with the normal `make`
+> you should clean before rebuilding: **`make clean`**.
+> When changing between 32 and 64-bit windows a `make clean` is also required.
 
 ### Packaging Windows installer
-If you want to package the GUI application and make a self contained exe **installer** you will need [NSIS](https://nsis.sourceforge.io/Main_Page).
+If you want to package the GUI application into a self contained **installer** you will need [NSIS](https://nsis.sourceforge.io/Main_Page).
 
 I have only ever used `NSIS` on Windows so I **won't** describe how to do make the installer **completely on Linux**.
 1. Copy all dependencies into a single folder
 ```shell
-cd cd src/quansheng-channels_gui/
+cd src/quansheng-channels_gui/
 mingw64-make prepare_windows_packaging
 ```
 
