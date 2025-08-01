@@ -1,13 +1,21 @@
 MAKEFILES := $(shell find src -name Makefile)
-MAKEFILES_LIB := $(shell find lib -name Makefile)
+MAKEFLAGS += --always-make
 
-.PHONY: all $(MAKECMDGOALS) $(MAKEFILES) $(MAKEFILES_LIB)
 all: $(MAKEFILES)
+	$(info $(MAKEFILES))
+
 $(MAKECMDGOALS): $(MAKEFILES)
 
-$(MAKEFILES): $(MAKEFILES_LIB)
-	cd $$(dirname $@) && $(MAKE) $(MAKECMDGOALS)
+define process_makefile
+deps_$1 := $(shell \
+  test -f $(dir $1)/Makefile.deps && \
+  cd $(dir $1) && $(MAKE) -s -f Makefile.deps print-deps || echo "")
+$1: $$(deps_$1)
+	$$(info Dependencies for $1 are $$(deps_$1))
+	cd $$(dir $$@) && $$(MAKE) $$(MAKECMDGOALS)
+endef
 
-$(MAKEFILES_LIB):
-	cd $$(dirname $@) && $(MAKE) $(MAKECMDGOALS)
+$(foreach mf,$(MAKEFILES),$(eval $(call process_makefile,$(mf))))
 
+*/*/Makefile:
+	cd $(dir $@) && $(MAKE) $(MAKECMDGOALS)

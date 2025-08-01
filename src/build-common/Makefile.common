@@ -11,10 +11,6 @@ ifneq ($(IS_MINGW_WINDOWS),)
 	OBJS += $(MANIFESTS:%=$(BUILD_DIR)/%.o)
 endif
 
-COMBINED_HEADER := $(PROJECT).h
-HEADERS := $(shell find -name '*.h' ! -name '_*' ! -path './internal/*')
-BUILD_HEADERS := $(patsubst %, $(BUILD_DIR)/%, $(HEADERS))
-
 CFLAGS += -Wall -Wextra -Werror
 
 ifeq ($(IS_RELEASE), yes)
@@ -25,6 +21,9 @@ else
 endif
 
 ifeq ($(EXECUTABLE_TYPE), library)
+	COMBINED_HEADER := $(PROJECT).h
+	HEADERS := $(shell find -name '*.h' ! -name '_*' ! -path './internal/*')
+	BUILD_HEADERS := $(patsubst %, $(BUILD_DIR)/%, $(HEADERS))
 	ifeq ($(IS_MINGW_WINDOWS),)
 		EXECUTABLE := $(PROJECT).so
 	else
@@ -59,13 +58,8 @@ $(BUILD_DIR)/%.c.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.h: %.h
-ifeq ($(EXECUTABLE_TYPE), library)
 	echo $< | sed 's/^.*/#include "&"/' >> $(BUILD_DIR)/$(COMBINED_HEADER)
 	cp $< $@
-else
-	@echo "This is an application. No need to combine headers."
-	touch $@
-endif
 
 clean:
 	rm -r $(BUILD_DIR)/*

@@ -1,9 +1,9 @@
 EXECUTABLE_TYPE := application
+ADITIONAL_DEPENDENCIES := ../../build/lib/iup/include/iup.h ../../build/libquansheng-channels/libquansheng-channels.h
 CFLAGS += -I../../build -I../../build/lib/iup/include
 LDFLAGS += -L../../build/libquansheng-channels -lquansheng-channels -L../../build/lib/iup -liup -liupimglib
 
 include ../build-common/Makefile.common
-
 
 PACKAGING_DIR_WIN := $(BUILD_DIR)/packaging/windows
 
