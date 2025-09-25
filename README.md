@@ -11,7 +11,7 @@
 ![Screenshoot of the GUI utility for converting CSV to CHAN files](./screenshoot.avif)
 
 ## Windows
-### Download your usual [`exe`](https://github.com/pisoj/og-nettools/releases/latest)
+### Download your usual [`exe`](https://github.com/pisoj/quansheng-tools/releases/latest)
 The installer gives you both **system-wide** and **portable** installation options
 
 ## Linux
